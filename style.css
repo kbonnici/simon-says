@@ -1,0 +1,51 @@
+:root {
+    --background: #112244;
+    --text: #F2F2F2;
+    --square-size: 10rem;
+    font-size: large;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    height: 75vh;
+    font-family: monospace;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    width: 50%;
+    margin: 5rem auto;
+    justify-items: center;
+}
+
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
+    rotate: 45deg;
+    background-color: white;
+    border-radius: 1rem;
+}
+
+#play-button {
+    display: flex;
+    justify-content: center;
+}
+
+#play-button > button {
+    width: 10rem;
+    border-radius: 0.5rem;
+    border: none;
+    height: 3rem;
+    background-color:lightblue;
+    font-size: 1.25rem;
+    font-family: monospace;
+    user-select: none;
+}
