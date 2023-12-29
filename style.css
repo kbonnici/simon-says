@@ -21,7 +21,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    width: 50%;
+    width: 25%;
     margin: 5rem auto;
     justify-items: center;
 }
@@ -32,7 +32,26 @@ h1 {
     rotate: 45deg;
     background-color: white;
     border-radius: 1rem;
+    border: 8px solid black;
+    cursor: pointer;
 }
+
+#red {
+    background-color: maroon;
+}
+
+#yellow {
+    background-color: darkorange;
+}
+
+#green {
+    background-color:forestgreen;
+}
+
+#blue {
+    background-color:navy;
+}
+
 
 #play-button {
     display: flex;
@@ -42,10 +61,12 @@ h1 {
 #play-button > button {
     width: 10rem;
     border-radius: 0.5rem;
-    border: none;
+    border: 6px solid black;
     height: 3rem;
     background-color:lightblue;
     font-size: 1.25rem;
+    font-weight: 600;
     font-family: monospace;
     user-select: none;
+    cursor: pointer;
 }
