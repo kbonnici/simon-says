@@ -17,6 +17,10 @@ h1 {
     margin-top: 3rem;
 }
 
+h2 {
+    margin-left: 25%;
+}
+
 .game {
     display: grid;
     grid-template-columns: 1fr 1fr;
