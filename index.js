@@ -1,24 +1,47 @@
-$('#play-button > button').click(startGame)
 $('.square').click(handleSquareClick)
 
-let playing = false
+const header = $('h1')
+const highScoreHeader = $('h2')
+const playButton = $('#play-button > button')
 const colors = ['red', 'green', 'blue', 'yellow']
+
+playButton.click(startGame)
+
+let sequence = []
 let playerSequence = []
+let score = 0
+let highScore = 0
 
 function getRandomColor() {
     return colors[Math.floor(Math.random()*colors.length)]
 }
 
-function handleSquareClick(e) {
-    if(!playing) return
-
+async function handleSquareClick(e) {
     const color = e.target.id
     const square = $(`#${color}`)
 
     if (square.data('flashing') === 'true') return
     
-    flashColor(color)
+    await flashColor(color)
     playerSequence.push(color)
+
+    if (playerSequence.every((value, index) => value === sequence[index])) {
+        if (sequence.length === playerSequence.length) {
+            // correct
+            header.text(`Score: ${++score}`)
+            if (score > highScore) {
+                highScore = score  
+                highScoreHeader.text(`High Score: ${highScore}`)
+            } 
+            
+            await new Promise(resolve => setTimeout(resolve, 1000))
+            play()
+        } 
+    } else {
+        header.text('You Lose!')
+        playButton.text('Restart')
+    }
+
 }
 
 async function flashColor(color) {
@@ -37,32 +60,19 @@ async function flashColor(color) {
 }
 
 function startGame() {
-    playing = true
-    $("h1").text('Score: 0')
+    if (playButton.text() === 'Playing') return
+    score = 0
+    sequence = []
+    playButton.text('Playing')
     play()
 }
 
 async function play() {
-    let score = 0
-    const sequence = []
+    header.text(`Score: ${score}`)
+    playerSequence = []
+    sequence.push(getRandomColor())
     
-    // while(playing) {
-    //     sequence.push(getRandomColor())
-        
-    //     // play sequence
-    //     for (let color of sequence) {
-    //         flashColor(color)
-    //     }
-        
-    //     // let player enter sequence
-    //     let correct = true
-    //     while(correct) {
-    //         if (!correct) break
-            
-
-    //     }
-        
-    //     // lose game
-    // }
-    
+    for (let color of sequence) {
+        await flashColor(color)
+    }
 }
